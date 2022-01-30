@@ -16,10 +16,37 @@ namespace WebMuNG.Controllers
     public class MyAccountController : Controller
     {
         private readonly IConfiguration configuration;
+        private readonly MuOnlineContext _db;
 
-        public MyAccountController(IConfiguration config)
+        public MyAccountController(IConfiguration config, MuOnlineContext db)
         {
             configuration = config;
+            _db = db;
+        }
+        [Authorize]
+        public IActionResult AddStats()
+        {
+            string username = User.Identity.Name;
+            string path = Directory.GetCurrentDirectory();
+            string jpath = path + "/CharacterMapping.json";
+            string jpathm = path + "/MapMapping.json";
+            StreamReader r = new StreamReader(jpath);
+            string json = r.ReadToEnd();
+            IList<MyAccount.CharacterMapping> CharMapp = JsonConvert.DeserializeObject<IList<MyAccount.CharacterMapping>>(json);
+            ViewBag.CharMapp = CharMapp;
+            StreamReader sr = new StreamReader(jpathm);
+            json = sr.ReadToEnd();
+            IList<MyAccount.MapMapping> MapMapp = JsonConvert.DeserializeObject<IList<MyAccount.MapMapping>>(json);
+            ViewBag.MapMapp = MapMapp;
+            var characters = _db.Characters.Where(m => m.AccountId == username);
+
+            return PartialView("_AddStats", characters);
+        }
+        [HttpPost]
+        public ActionResult AddStatsTo(Character chr)
+        {
+            var test = chr;
+            return PartialView("_AddStats");
         }
 
         [Authorize]

@@ -1,0 +1,276 @@
+﻿@model IEnumerable<WebMuNG.Character>
+
+@{
+    ViewData["Title"] = "_AddStats";
+    Layout = "_UserPanel";
+}
+
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive"></script>  
+<style>
+    .CharCard {
+        border: 0;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        border-radius: 6px;
+        color: rgba(0,0,0,.87);
+        background: #fff;
+        width: 100%;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.12);
+        border-radius: .25rem;
+        font-size: .875rem;
+    }
+
+    .card-header {
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0,0,0,.12);
+    }
+
+    .card-header-tabs {
+        margin-bottom: 0px;
+    }
+
+    .CharCard .card-header-primary {
+        box-shadow: 0 5px 20px 0 rgba(0,0,0,.2),0 13px 24px -11px rgba(156,39,176,.6);
+    }
+
+    .CharCard .card-header-primary {
+        background: linear-gradient(60deg,#ab47bc,#7b1fa2);
+    }
+
+    .CharCard .card-header {
+        border-radius: 3px;
+        padding: 1rem 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: -30px;
+        border: 0;
+        background: linear-gradient(60deg,#ab47bc,#7b1fa2);
+    }
+
+    .card-nav-tabs .card-header {
+        margin-top: -30px !important;
+    }
+    .col-5, col-7 {
+        padding: 0px !important
+    }
+    .table th {
+        width: 200px;
+        min-width: 100px;
+        max-width: 220px;
+    }
+    .mapcords {
+        font-size: 70%
+    }
+    .card-body .table tr {
+        line-height: 1
+    }
+    .col-12 img {
+        width: 400px;
+        height:388px;
+    }
+    .col-12 .col-12 {
+        background-color: #9f819d
+    }
+    #Strength {
+        width: 100px;
+    }
+    #Dexterity {
+        width: 100px;
+    }
+    #Vitality {
+        width: 100px;
+    }
+    #Energy {
+        width: 100px;
+    }
+    #Leadership {
+        width: 100px;
+    }
+    form label {
+        width: 100px;
+    }
+</style>
+
+<h3 class="text-center">My Characters</h3>
+<div class="container">
+    <div class="CharCard">
+        <div class="card-header card-header-primary">
+            <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                @foreach (var item in Model)
+                {
+                    if (item.Name != "N/A")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="#@item.Name" role="tab" aria-controls="@item.Name" aria-selected="false">@item.Name</a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <h5 class="text-center">No Characters found</h5>
+                    }
+                }
+
+            </ul>
+        </div>
+        <div class="card-body">
+
+            <div class="tab-content mt-3">
+                @foreach (var item in Model)
+                {
+                         <div class="tab-pane" id="@item.Name" role="tabpanel">
+                            <div class="row">
+                                <div class="col-5" style="background-color:#a4f1e7 !important">
+                                    @{
+                                        var charclassimage2 = ((IList<MyAccount.CharacterMapping>)ViewBag.CharMapp).Where(x => x.CharClassID == item.Class); 
+                                        foreach(var j in charclassimage2)
+                                        {
+                                            <img src="@j.CharClassImage" />
+                                        }
+                                    }
+                                </div>
+                                <div class="col-7" style="background-color:#a4f1e7 !important">
+                                    <table class="table">
+                                        <tr>
+                                            <th>Character name:</th>
+                                            <td>@item.Name</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Character class:</th>
+                                            <td>
+                                            @{
+                                                var charclassname2 = ((IList<MyAccount.CharacterMapping>)ViewBag.CharMapp).Where(x => x.CharClassID == item.Class); 
+                                                foreach(var j in charclassname2)
+                                                {
+                                                    @j.CharClassName
+                                                }
+                                            }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Level:</th>
+                                            <td>@item.CLevel</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Resets:</th>
+                                            <td>@item.Resets</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Location:</th>
+                                            <td>
+                                                @{
+                                                    var mapname = ((IList<MyAccount.MapMapping>)ViewBag.MapMapp).Where(x => x.MapID == item.MapNumber); 
+                                                    foreach(var j in mapname)
+                                                    {
+                                                        @j.MapName <a class="mapcords"> (@item.MapPosX,@item.MapPosY)</a>
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr class="text-center">
+                                            @if (item.Class <= 66 && item.Class >= 64)
+                                            {
+                                                <th scope="col">Strength</th>
+                                                <th scope="col">Agility</th>
+                                                <th scope="col">Vitality</th>
+                                                <th scope="col">Energy</th>
+                                                <th scope="col">Command</th>
+                                            }
+                                            else
+                                            {
+                                                <th scope="col">Strength</th>
+                                                <th scope="col">Agility</th>
+                                                <th scope="col">Vitality</th>
+                                                <th scope="col">Energy</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            @if (item.Class <= 66 && item.Class >= 64)
+                                            {
+                                                <td>@item.Strength</td>
+                                                <td>@item.Dexterity</td>
+                                                <td>@item.Vitality</td>
+                                                <td>@item.Energy</td>
+                                                <td>@item.Leadership</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.Strength</td>
+                                                <td>@item.Dexterity</td>
+                                                <td>@item.Vitality</td>
+                                                <td>@item.Energy</td>
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-7" style="background-color:#a4f1e7 !important;min-width:100%">
+                                <span class="PointsRem">Available points: @item.LevelUpPoint</span>
+                                <br />
+                                @if (item.Class <= 66 && item.Class >= 64)
+                                {
+                                    @using (Html.BeginForm("AddStatsTo", "MyAccount", FormMethod.Post,new { id = "form" }))
+                                    {
+                                        <label>Strength:</label>
+                                        @Html.TextBox("Strength")<br />
+                                        <label>Dexterity:</label>
+                                        @Html.TextBox("Dexterity")<br />
+                                        <label>Vitality:</label>
+                                        @Html.TextBox("Vitality")<br />
+                                        <label>Energy:</label>
+                                        @Html.TextBox("Energy")<br />
+                                        <label>Leadership:</label>
+                                        @Html.TextBox("Leadership")<br />
+
+                                        <input type="button" class="btn btn-success" value="Submit"/>
+                                        <br />
+                                    }
+                                }
+                                else
+                                {
+                                    @using (Html.BeginForm("AddStatsTo", "MyAccount", FormMethod.Post,new { id = "form" }))
+                                    {
+                                        <label>Strength:</label>
+                                        @Html.TextBox("Strength")<br />
+                                        <label>Dexterity:</label>
+                                        @Html.TextBox("Dexterity")<br />
+                                        <label>Vitality:</label>
+                                        @Html.TextBox("Vitality")<br />
+                                        <label>Energy:</label>
+                                        @Html.TextBox("Energy")<br />
+
+                                        <input type="button" class="btn btn-success" value="Submit"/>
+                                        <br />
+                                    }
+                                }
+                                </div>
+                            </div>
+                        </div> 
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('#bologna-list a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>

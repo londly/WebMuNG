@@ -24,7 +24,7 @@ namespace WebMuNG.Controllers
         // GET: Rankings
         public IActionResult Index()
         {
-            var x = _db.Database.CanConnect();
+
             string path = Directory.GetCurrentDirectory();
             string jpath = path + "/CharacterMapping.json";
             string jpathm = path + "/MapMapping.json";
@@ -37,8 +37,6 @@ namespace WebMuNG.Controllers
             IList<MyAccount.MapMapping> MapMapp = JsonConvert.DeserializeObject<IList<MyAccount.MapMapping>>(json);
             ViewBag.MapMapp = MapMapp;
 
-
-            var characterList = new Character();
             var characters = _db.Characters.OrderByDescending(m => ((m.Resets * 400) + m.CLevel)).Take(50);
 
             return View(characters);
