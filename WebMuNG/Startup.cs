@@ -27,7 +27,7 @@ namespace WebMuNG
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<MuOnline>(options => options.UseSqlServer(Configuration.GetConnectionString("MuDB")));
+            services.AddDbContext<MuOnlineContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MuDB")));
             services.AddControllersWithViews();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -36,7 +36,7 @@ namespace WebMuNG
                     option.LoginPath = "/login";
                 });
 
-            services.AddDbContext<MuOnline>(options =>
+            services.AddDbContext<MuOnlineContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MuDB")));
         }
 

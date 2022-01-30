@@ -1,5 +1,72 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<WebMuNG.Character>
+
 @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var i = 0;
 }
+
+<h1>Rankings</h1>
+<h4>Top 50 players</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Class)
+            </th>
+            <th>
+               Level
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resets)
+            </th>
+            <th>
+                Location
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+             <td>
+                @{i=i+1;}
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+            @{
+                var charclass = ((IList<MyAccount.CharacterMapping>)ViewBag.CharMapp).Where(x => x.CharClassID == item.Class); 
+                foreach(var j in charclass)
+                {
+                    @j.CharClassName
+                }
+            }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resets)
+            </td>
+            <td>
+            @{
+                var mapname = ((IList<MyAccount.MapMapping>)ViewBag.MapMapp).Where(x => x.MapID == item.MapNumber); 
+                foreach(var j in mapname)
+                {
+                    @j.MapName
+                }
+            }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
