@@ -1,0 +1,263 @@
+[
+  {
+    "MapID": 0,
+    "MapName": "Lorencia"
+  },
+  {
+    "MapID": 1,
+    "MapName": "Dungeon"
+  },
+  {
+    "MapID": 2,
+    "MapName": "Devias"
+  },
+  {
+    "MapID": 3,
+    "MapName": "Noria"
+  },
+  {
+    "MapID": 4,
+    "MapName": "Lost tower"
+  },
+  {
+    "MapID": 5,
+    "MapName": "Exile"
+  },
+  {
+    "MapID": 6,
+    "MapName": "Arena"
+  },
+  {
+    "MapID": 7,
+    "MapName": "Atlans"
+  },
+  {
+    "MapID": 8,
+    "MapName": "Tarkan"
+  },
+  {
+    "MapID": 9,
+    "MapName": "Devil Square"
+  },
+  {
+    "MapID": 10,
+    "MapName": "Icarus"
+  },
+  {
+    "MapID": 11,
+    "MapName": "Blood castle 1"
+  },
+  {
+    "MapID": 12,
+    "MapName": "Blood castle 2"
+  },
+  {
+    "MapID": 13,
+    "MapName": "Blood castle 3"
+  },
+  {
+    "MapID": 14,
+    "MapName": "Blood castle 4"
+  },
+  {
+    "MapID": 15,
+    "MapName": "Blood castle 5"
+  },
+  {
+    "MapID": 16,
+    "MapName": "Blood castle 6"
+  },
+  {
+    "MapID": 17,
+    "MapName": "Blood castle 7"
+  },
+  {
+    "MapID": 18,
+    "MapName": "Chaos Castle I"
+  },
+  {
+    "MapID": 19,
+    "MapName": "Chaos Castle II"
+  },
+  {
+    "MapID": 20,
+    "MapName": "Chaos Castle III"
+  },
+  {
+    "MapID": 21,
+    "MapName": "Chaos Castle IV"
+  },
+  {
+    "MapID": 22,
+    "MapName": "Chaos Castle V"
+  },
+  {
+    "MapID": 23,
+    "MapName": "Chaos Castle VI"
+  },
+  {
+    "MapID": 24,
+    "MapName": "Kalima I"
+  },
+  {
+    "MapID": 25,
+    "MapName": "Kalima II"
+  },
+  {
+    "MapID": 26,
+    "MapName": "Kalima II"
+  },
+  {
+    "MapID": 27,
+    "MapName": "Kalima IV"
+  },
+  {
+    "MapID": 28,
+    "MapName": "Kalima V"
+  },
+  {
+    "MapID": 29,
+    "MapName": "Kalima VI"
+  },
+  {
+    "MapID": 30,
+    "MapName": "Valley Of Loren"
+  },
+  {
+    "MapID": 31,
+    "MapName": "Land Of Trial"
+  },
+  {
+    "MapID": 33,
+    "MapName": "Aida"
+  },
+  {
+    "MapID": 34,
+    "MapName": "CryWolf"
+  },
+  {
+    "MapID": 36,
+    "MapName": "Kalima VII"
+  },
+  {
+    "MapID": 37,
+    "MapName": "Kanturu"
+  },
+  {
+    "MapID": 38,
+    "MapName": "Kanturu Ruins"
+  },
+  {
+    "MapID": 39,
+    "MapName": "Kanturu Tower"
+  },
+  {
+    "MapID": 40,
+    "MapName": "Silent Map"
+  },
+  {
+    "MapID": 41,
+    "MapName": "Reffuge of Balgass"
+  },
+  {
+    "MapID": 42,
+    "MapName": "Barracks of Balgass"
+  },
+  {
+    "MapID": 45,
+    "MapName": "Illusion Temple I"
+  },
+  {
+    "MapID": 46,
+    "MapName": "Illusion Temple II"
+  },
+  {
+    "MapID": 47,
+    "MapName": "Illusion Temple III"
+  },
+  {
+    "MapID": 48,
+    "MapName": "Illusion Temple IV"
+  },
+  {
+    "MapID": 49,
+    "MapName": "Illusion Temple V"
+  },
+  {
+    "MapID": 50,
+    "MapName": "Illusion Temple VI"
+  },
+  {
+    "MapID": 51,
+    "MapName": "Elbeland"
+  },
+  {
+    "MapID": 52,
+    "MapName": "Blood Castle 8"
+  },
+  {
+    "MapID": 53,
+    "MapName": "Chaos Castle VII"
+  },
+  {
+    "MapID": 56,
+    "MapName": "Swamp Of Calmness"
+  },
+  {
+    "MapID": 57,
+    "MapName": "Raklion"
+  },
+  {
+    "MapID": 58,
+    "MapName": "Raklion Hatchery"
+  },
+  {
+    "MapID": 62,
+    "MapName": "Santa Village"
+  },
+  {
+    "MapID": 63,
+    "MapName": "Vulcanus"
+  },
+  {
+    "MapID": 64,
+    "MapName": "Duel Arena"
+  },
+  {
+    "MapID": 65,
+    "MapName": "DG: Ice Zone"
+  },
+  {
+    "MapID": 66,
+    "MapName": "DG: Crystal Cave"
+  },
+  {
+    "MapID": 67,
+    "MapName": "DG: Underwater"
+  },
+  {
+    "MapID": 68,
+    "MapName": "DG: Blaze Zone"
+  },
+  {
+    "MapID": 69,
+    "MapName": "Bareuka 1"
+  },
+  {
+    "MapID": 70,
+    "MapName": "Bareuka 2"
+  },
+  {
+    "MapID": 71,
+    "MapName": "Bareuka 3"
+  },
+  {
+    "MapID": 72,
+    "MapName": "Bareuka 4"
+  },
+  {
+    "MapID": 79,
+    "MapName": "Lorencia Market"
+  }
+]
+

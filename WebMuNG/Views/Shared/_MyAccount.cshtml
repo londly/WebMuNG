@@ -1,0 +1,490 @@
+﻿@model IList<WebMuNG.Models.MyAccount>;
+@{
+    var username = ViewBag.UserPass;
+    string pass = "Password";
+    Layout = "_UserPanel";
+    List<byte> AccountStatus = Model.Select(e => e.connected).Distinct().ToList();
+    List<string> UserMail = Model.Select(e => e.UserMail).Distinct().ToList();
+}
+<style>
+    .CharCard {
+        border: 0;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        border-radius: 6px;
+        color: rgba(0,0,0,.87);
+        background: #fff;
+        width: 100%;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.12);
+        border-radius: .25rem;
+        font-size: .875rem;
+    }
+
+    .card-header {
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0,0,0,.12);
+    }
+
+    .card-header-tabs {
+        margin-bottom: 0px;
+    }
+
+    .CharCard .card-header-primary {
+        box-shadow: 0 5px 20px 0 rgba(0,0,0,.2),0 13px 24px -11px rgba(156,39,176,.6);
+    }
+
+    .CharCard .card-header-primary {
+        background: linear-gradient(60deg,#ab47bc,#7b1fa2);
+    }
+
+    .CharCard .card-header {
+        border-radius: 3px;
+        padding: 1rem 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: -30px;
+        border: 0;
+        background: linear-gradient(60deg,#ab47bc,#7b1fa2);
+    }
+
+    .card-nav-tabs .card-header {
+        margin-top: -30px !important;
+    }
+    .col-5, col-7 {
+        padding: 0px !important
+    }
+    .table th {
+        width: 200px;
+        min-width: 100px;
+        max-width: 220px;
+    }
+    .mapcords {
+        font-size: 70%
+    }
+    .card-body .table tr {
+        line-height: 1
+    }
+    .col-12 img {
+        width: 400px;
+        height:388px;
+    }
+    .col-12 .col-12 {
+        background-color: #9f819d
+    }
+</style>
+<h3 class="text-center">MyAccount</h3>
+<table class="table">
+    @foreach (var item in AccountStatus)
+    {
+        <tr>
+            <th>Online Status:</th>
+            <td>@item</td>
+        </tr>
+    }
+    <tr>
+        <th>Username:</th>
+        <td>@User.Identity.Name</td>
+    </tr>
+    @foreach (var item in UserMail)
+    {
+        <tr>
+            <th>Email Address:</th>
+            <td>@item</td>
+        </tr>
+    }
+    <tr>
+        <th>Password:</th>
+        <td>
+            ••••••••
+            <button style="float: right;font-size: 14px;padding: 0px 20px;" type="button" class="btn btn-light" data-toggle="modal" data-target="#changePassword">
+              Edit
+            </button>
+        </td>
+    </tr>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="changePasswordlLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordlLabel">Change your password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+        @using (Html.BeginForm("ChangePassword", "MyAccount", FormMethod.Post))
+        {
+            <label>New Password:</label>
+            @Html.TextBox("NewPassword")
+            <input type="submit" value="Submit"/>
+        }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</hr>
+<h3 class="text-center">My Characters</h3>
+<div class="container">
+    <div class="CharCard">
+        <div class="card-header card-header-primary">
+            <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                @foreach (var item in Model)
+                {
+                    if (item.CharName != "N/A")
+                    {
+                        if (Model.First() == item)
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#@item.CharName" role="tab" aria-controls="@item.CharName" aria-selected="false">@item.CharName</a>
+                        </li>
+                        }
+                        else
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link" href="#@item.CharName" role="tab" aria-controls="@item.CharName" aria-selected="false">@item.CharName</a>
+                        </li>
+                        }
+                    }
+                    else
+                    {
+                        <h5 class="text-center">No Characters found</h5>
+                    }
+                }
+
+            </ul>
+        </div>
+        <div class="card-body">
+
+            <div class="tab-content mt-3">
+                @foreach (var item in Model)
+                {
+                    if (item.CharName != "N/A")
+                    {
+                        if (Model.First() == item)
+                        {
+                        <div class="tab-pane active" id="@item.CharName" role="tabpanel">
+                            <div class="row">
+                                <div class="col-5" style="background-color:#a4f1e7 !important">
+                                    @foreach (var i in (IList<MyAccount.CharacterMapping>)ViewBag.CharMapp)
+                                    {
+                                        if (i.CharClassID == @item.CharClass)
+                                        {
+                                            <img src="@i.CharClassImage" />
+                                        }
+                                    }
+                                </div>
+                                <div class="col-7" style="background-color:#a4f1e7 !important">
+                                    <table class="table">
+                                        <tr>
+                                            <th>Character name:</th>
+                                            <td>@item.CharName</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Character class:</th>
+                                            <td>
+                                                @foreach (var i in (IList<MyAccount.CharacterMapping>)ViewBag.CharMapp)
+                                                {
+                                                    if (i.CharClassID == @item.CharClass)
+                                                    {
+                                                        @i.CharClassName
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Level:</th>
+                                            <td>@item.CharLevel</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Resets:</th>
+                                            <td>@item.CharResests</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Location:</th>
+                                            <td>
+                                                @foreach (var i in (IList<MyAccount.MapMapping>)ViewBag.MapMapp)
+                                                {
+                                                    if (i.MapID == @item.CharMap)
+                                                    {
+                                                        @i.MapName <a class="mapcords"> (@item.CharMapPosX,@item.CharMapPosY)</a>
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Guild:</th>
+                                            <td>@item.CharGuildName</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr class="text-center">
+                                            @if (item.CharClass <= 66 && item.CharClass >= 64)
+                                            {
+                                                <th scope="col">Strength</th>
+                                                <th scope="col">Agility</th>
+                                                <th scope="col">Vitality</th>
+                                                <th scope="col">Energy</th>
+                                                <th scope="col">Command</th>
+                                            }
+                                            else
+                                            {
+                                                <th scope="col">Strength</th>
+                                                <th scope="col">Agility</th>
+                                                <th scope="col">Vitality</th>
+                                                <th scope="col">Energy</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            @if (item.CharClass <= 66 && item.CharClass >= 64)
+                                            {
+                                                <td>@item.CharSTR</td>
+                                                <td>@item.CharAGI</td>
+                                                <td>@item.CharVIT</td>
+                                                <td>@item.CharENE</td>
+                                                <td>@item.CharCMD</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.CharSTR</td>
+                                                <td>@item.CharAGI</td>
+                                                <td>@item.CharVIT</td>
+                                                <td>@item.CharENE</td>
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-12">
+                                    <div class="col-12 text-center">
+                                        <h3>Inventory</h3>
+                                    </div>
+                                    <div class="container-fluid text-center" style="background-color:#a4f1e7 !important">
+                                        @foreach (var i in (IList<MyAccount.CharacterMapping>)ViewBag.CharMapp)
+                                        {
+                                            if (i.CharClassID == @item.CharClass)
+                                            {
+                                                <img src="@i.CharInventoryImage" />
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                @foreach (var i in Model)
+                                {
+                                    Console.WriteLine(@item.CharName);
+                                    var vItem = i.CharInventory;
+                                    var vItemLEN = 32;
+                                    var db_i_space = 116;
+                                    var x = 0;
+                                    var y = 0;
+
+                                    while (x <= db_i_space)
+                                    {
+                                        if(x==0) { y = x * 32; }
+                                        else { y = (x * 32)+1; }
+
+                                        var item_id = vItem[y + 0];
+                                        var iop = vItem[y + 1];
+                                        var itemdur = vItem[y + 2];
+                                        var ioo = vItem[y + 7];
+                                        var ac = vItem[y + 8];
+                                        var itt = vItem[y + 9];
+                                        var h_option = vItem[y + 10];
+                                        var h_value = vItem[y + 11];
+                                        var serial = vItem[y + 3] + vItem[y + 4] + vItem[y + 6];
+                                        var sockets = vItem[y + 32] + vItem[y + 32] + vItem[y + 31] + vItem[y + 29] + vItem[y + 28] + vItem[y + 27] + vItem[y + 26] + vItem[y + 25] + vItem[y + 24] + vItem[y + 23] + vItem[y + 22];
+                                        var item_type = itt / 16;
+                                        x++;
+                                    }
+
+                                    @foreach (var j in vItem)
+                                    {
+                                        if (j != 255)
+                                        {
+                                            Console.WriteLine(j);
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+                        }
+                        else
+                        {
+                        <div class="tab-pane" id="@item.CharName" role="tabpanel">
+                            <div class="row">
+                                <div class="col-5" style="background-color:#a4f1e7 !important">
+                                    @foreach (var i in (IList<MyAccount.CharacterMapping>)ViewBag.CharMapp)
+                                    {
+                                        if (i.CharClassID == @item.CharClass)
+                                        {
+                                            <img src="@i.CharClassImage" />
+                                        }
+                                    }
+                                </div>
+                                <div class="col-7" style="background-color:#a4f1e7 !important">
+                                    <table class="table">
+                                        <tr>
+                                            <th>Character name:</th>
+                                            <td>@item.CharName</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Character class:</th>
+                                            <td>
+                                                @foreach (var i in (IList<MyAccount.CharacterMapping>)ViewBag.CharMapp)
+                                                {
+                                                    if (i.CharClassID == @item.CharClass)
+                                                    {
+                                                        @i.CharClassName
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Level:</th>
+                                            <td>@item.CharLevel</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Resets:</th>
+                                            <td>@item.CharResests</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Location:</th>
+                                            <td>
+                                                @foreach (var i in (IList<MyAccount.MapMapping>)ViewBag.MapMapp)
+                                                {
+                                                    if (i.MapID == @item.CharMap)
+                                                    {
+                                                        @i.MapName <a class="mapcords"> (@item.CharMapPosX,@item.CharMapPosY)</a>
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Guild:</th>
+                                            <td>@item.CharGuildName</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr class="text-center">
+                                            @if (item.CharClass <= 66 && item.CharClass >= 64)
+                                            {
+                                                <th scope="col">Strength</th>
+                                                <th scope="col">Agility</th>
+                                                <th scope="col">Vitality</th>
+                                                <th scope="col">Energy</th>
+                                                <th scope="col">Command</th>
+                                            }
+                                            else
+                                            {
+                                                <th scope="col">Strength</th>
+                                                <th scope="col">Agility</th>
+                                                <th scope="col">Vitality</th>
+                                                <th scope="col">Energy</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            @if (item.CharClass <= 66 && item.CharClass >= 64)
+                                            {
+                                                <td>@item.CharSTR</td>
+                                                <td>@item.CharAGI</td>
+                                                <td>@item.CharVIT</td>
+                                                <td>@item.CharENE</td>
+                                                <td>@item.CharCMD</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.CharSTR</td>
+                                                <td>@item.CharAGI</td>
+                                                <td>@item.CharVIT</td>
+                                                <td>@item.CharENE</td>
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-12">
+                                    <div class="col-12 text-center">
+                                        <h3>Inventory</h3>
+                                    </div>
+                                    <div class="container-fluid text-center" style="background-color:#a4f1e7 !important">
+                                        @foreach (var i in (IList<MyAccount.CharacterMapping>)ViewBag.CharMapp)
+                                        {
+                                            if (i.CharClassID == @item.CharClass)
+                                            {
+                                                <img src="@i.CharInventoryImage" />
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                @*@foreach (var i in Model)
+                                {
+                                    Console.WriteLine(@item.CharName);
+                                    var vItem = i.CharInventory;
+                                    var vItemLEN = 32;
+                                    var db_i_space = 116;
+                                    var x = 0;
+                                    var y = 0;
+
+                                    while (x <= db_i_space)
+                                    {
+                                        if (x == 0) { y = x * 32; }
+                                        else { y = (x * 32) + 1; }
+
+                                        var item_id = vItem[y + 0];
+                                        var iop = vItem[y + 1];
+                                        var itemdur = vItem[y + 2];
+                                        var ioo = vItem[y + 7];
+                                        var ac = vItem[y + 8];
+                                        var itt = vItem[y + 9];
+                                        var h_option = vItem[y + 10];
+                                        var h_value = vItem[y + 11];
+                                        var serial = vItem[y + 3] + vItem[y + 4] + vItem[y + 6];
+                                        var sockets = vItem[y + 32] + vItem[y + 32] + vItem[y + 31] + vItem[y + 29] + vItem[y + 28] + vItem[y + 27] + vItem[y + 26] + vItem[y + 25] + vItem[y + 24] + vItem[y + 23] + vItem[y + 22];
+                                        var item_type = itt / 16;
+                                        x++;
+                                    }
+
+                                    @foreach (var j in vItem)
+                                    {
+                                        if (j != 255)
+                                        {
+                                            Console.WriteLine(j);
+                                        }
+                                    }
+                                }*@
+                                </div>
+                        </div>
+                        }
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('#bologna-list a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>

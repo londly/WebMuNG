@@ -1,0 +1,152 @@
+[
+  {
+    "CharClassID": 0,
+    "CharClassName": "Dark Wizard",
+    "CharClassImage": "/img/sm.png",
+    "CharInventoryImage": "/img/Inventory/inv_dw.png"
+  },
+  {
+    "CharClassID": 1,
+    "CharClassName": "Soul Master",
+    "CharClassImage": "/img/sm.png",
+    "CharInventoryImage": "/img/Inventory/inv_dw.png"
+  },
+  {
+    "CharClassID": 2,
+    "CharClassName": "Grand Master",
+    "CharClassImage": "/img/sm.png",
+    "CharInventoryImage": "/img/Inventory/inv_dw.png"
+  },
+  {
+    "CharClassID": 3,
+    "CharClassName": "Soul Wizard",
+    "CharClassImage": "/img/sm.png",
+    "CharInventoryImage": "/img/Inventory/inv_dw.png"
+  },
+  {
+    "CharClassID": 16,
+    "CharClassName": "Dark Knight",
+    "CharClassImage": "/img/bk.png",
+    "CharInventoryImage": "/img/Inventory/inv_dk.png"
+  },
+  {
+    "CharClassID": 17,
+    "CharClassName": "Blade Knight",
+    "CharClassImage": "/img/bk.png",
+    "CharInventoryImage": "/img/Inventory/inv_dk.png"
+  },
+  {
+    "CharClassID": 18,
+    "CharClassName": "Blade Master",
+    "CharClassImage": "/img/bk.png",
+    "CharInventoryImage": "/img/Inventory/inv_dk.png"
+  },
+  {
+    "CharClassID": 19,
+    "CharClassName": "Dragon Knight",
+    "CharClassImage": "/img/bk.png",
+    "CharInventoryImage": "/img/Inventory/inv_dk.png"
+  },
+  {
+    "CharClassID": 32,
+    "CharClassName": "Fairy Elf",
+    "CharClassImage": "/img/elf.png",
+    "CharInventoryImage": "/img/Inventory/inv_fe.png"
+  },
+  {
+    "CharClassID": 33,
+    "CharClassName": "Muse Elf",
+    "CharClassImage": "/img/elf.png",
+    "CharInventoryImage": "/img/Inventory/inv_fe.png"
+  },
+  {
+    "CharClassID": 34,
+    "CharClassName": "High Elf",
+    "CharClassImage": "/img/elf.png",
+    "CharInventoryImage": "/img/Inventory/inv_fe.png"
+  },
+  {
+    "CharClassID": 35,
+    "CharClassName": "Noble Elf",
+    "CharClassImage": "/img/elf.png",
+    "CharInventoryImage": "/img/Inventory/inv_fe.png"
+  },
+  {
+    "CharClassID": 48,
+    "CharClassName": "Magic Gladiator",
+    "CharClassImage": "/img/mg.png",
+    "CharInventoryImage": "/img/Inventory/inv_mg.png"
+  },
+  {
+    "CharClassID": 49,
+    "CharClassName": "Duel Master",
+    "CharClassImage": "/img/mg.png",
+    "CharInventoryImage": "/img/Inventory/inv_mg.png"
+  },
+  {
+    "CharClassID": 50,
+    "CharClassName": "Duel Master",
+    "CharClassImage": "/img/mg.png",
+    "CharInventoryImage": "/img/Inventory/inv_mg.png"
+  },
+  {
+    "CharClassID": 64,
+    "CharClassName": "Dark Lord",
+    "CharClassImage": "/img/dl.png",
+    "CharInventoryImage": "/img/Inventory/inv_dl.png"
+  },
+  {
+    "CharClassID": 65,
+    "CharClassName": "Lord Emperor",
+    "CharClassImage": "/img/dl.png",
+    "CharInventoryImage": "/img/Inventory/inv_dl.png"
+  },
+  {
+    "CharClassID": 66,
+    "CharClassName": "Lord Emperor",
+    "CharClassImage": "/img/dl.png",
+    "CharInventoryImage": "/img/Inventory/inv_dl.png"
+  },
+  {
+    "CharClassID": 80,
+    "CharClassName": "Summoner",
+    "CharClassImage": "/img/sum.png",
+    "CharInventoryImage": "/img/Inventory/inv_sum.png"
+  },
+  {
+    "CharClassID": 81,
+    "CharClassName": "Bloody Summoner",
+    "CharClassImage": "/img/sum.png",
+    "CharInventoryImage": "/img/Inventory/inv_sum.png"
+  },
+  {
+    "CharClassID": 82,
+    "CharClassName": "Dimension Master",
+    "CharClassImage": "/img/sum.png",
+    "CharInventoryImage": "/img/Inventory/inv_sum.png"
+  },
+  {
+    "CharClassID": 83,
+    "CharClassName": "Dimension Summoner",
+    "CharClassImage": "/img/sum.png",
+    "CharInventoryImage": "/img/Inventory/inv_sum.png"
+  },
+  {
+    "CharClassID": 96,
+    "CharClassName": "Rage Fighter",
+    "CharClassImage": "/img/rf.png",
+    "CharInventoryImage": "/img/Inventory/inv_dk.png"
+  },
+  {
+    "CharClassID": 97,
+    "CharClassName": "Fist Master",
+    "CharClassImage": "/img/rf.png",
+    "CharInventoryImage": "/img/Inventory/inv_dk.png"
+  },
+  {
+    "CharClassID": 98,
+    "CharClassName": "Fist Master",
+    "CharClassImage": "/img/rf.png",
+    "CharInventoryImage": "/img/Inventory/inv_dk.png"
+  }
+]

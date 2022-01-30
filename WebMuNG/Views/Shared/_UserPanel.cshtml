@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebMuNG</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<style>
+    .col-3 {
+        padding: 0px !important
+    }
+    .col-9 {
+        padding: 0px !important
+    }
+</style>
+<body>
+    @Html.Partial("_Header")
+    <div class="container">
+        <main role="main" class="pb-3">
+            <h2 class="text-center">
+                Welcome, @User.Identity.Name
+            </h2>
+            <div class="row">
+                <div class="col-3" style="background-color:#a4f1e7 !important">
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="MyAccount" asp-action="MyAccount">
+                                My Account
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                WebShop
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Market
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Clear Skill-Tree
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                PK Clear
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Warp Character
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Reset Stats
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Add Stats
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Vote Reward
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-9" style="background-color:#bbdda4 !important">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+    </div>
+
+    @Html.Partial("_Footer")
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>
