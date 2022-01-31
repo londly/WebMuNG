@@ -224,8 +224,9 @@
                                 <br />
                                 @if (item.Class <= 66 && item.Class >= 64)
                                 {
-                                    @using (Html.BeginForm("AddStatsTo", "MyAccount", FormMethod.Post,new { id = "form" }))
+                                    @using (Html.BeginForm("AddStatsTo", "MyAccountController", FormMethod.Post,new { id = "form" }))
                                     {
+                                        <input id="Name" name="Name" type="text" value="@item.Name" hidden>
                                         <label>Strength:</label>
                                         @Html.TextBox("Strength")<br />
                                         <label>Dexterity:</label>
@@ -237,14 +238,15 @@
                                         <label>Leadership:</label>
                                         @Html.TextBox("Leadership")<br />
 
-                                        <input type="button" class="btn btn-success" value="Submit"/>
+                                        <input type="submit" class="btn btn-success" value="Submit"/>
                                         <br />
                                     }
                                 }
                                 else
                                 {
-                                    @using (Html.BeginForm("AddStatsTo", "MyAccount", FormMethod.Post,new { id = "form" }))
+                                    @using (Html.BeginForm("AddStatsTo", "MyAccount", FormMethod.Post))
                                     {
+                                        <input id="Name" name="Name" type="text" value="@item.Name" hidden>
                                         <label>Strength:</label>
                                         @Html.TextBox("Strength")<br />
                                         <label>Dexterity:</label>
@@ -254,7 +256,7 @@
                                         <label>Energy:</label>
                                         @Html.TextBox("Energy")<br />
 
-                                        <input type="button" class="btn btn-success" value="Submit"/>
+                                        <input type="submit" class="btn btn-success" value="Submit"/>
                                         <br />
                                     }
                                 }

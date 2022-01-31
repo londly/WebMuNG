@@ -43,10 +43,21 @@ namespace WebMuNG.Controllers
             return PartialView("_AddStats", characters);
         }
         [HttpPost]
-        public ActionResult AddStatsTo(Character chr)
+        public ActionResult AddStatsTo(string Name,int Strength,int Dexterity, int Vitality, int Energy, int Command)
         {
-            var test = chr;
-            return PartialView("_AddStats");
+            var totalpoints = Strength + Dexterity + Vitality + Energy;
+            var q = _db.Characters.Where(m=> m.Name == Name && m.LevelUpPoint >= totalpoints).FirstOrDefault();
+            if (q != null)
+            {
+                q.Strength = q.Strength + Strength;
+                q.Dexterity = q.Dexterity + Dexterity;
+                q.Vitality = q.Vitality + Vitality;
+                q.Energy = q.Energy + Energy;
+                q.LevelUpPoint = q.LevelUpPoint - totalpoints;
+                _db.SaveChanges();
+            }
+
+            return View("Index");
         }
 
         [Authorize]
